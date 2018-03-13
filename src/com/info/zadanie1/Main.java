@@ -9,26 +9,44 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);
         int i=0;
+        int randomNumber = 0;
+        boolean isGood = false;
 
-        System.out.println("Wylosuj liczbę z przedziału od 1 do ? (podaj liczbę):");
-        String maxRange = reader.next();
+        while(!isGood) {
+            try {
+                System.out.println("Wylosuj liczbę z przedziału od 1 do ? (podaj liczbę):");
+                String maxRange = reader.next();
 
-        Random generator = new Random();
-        int randomNumber = generator.nextInt(Integer.parseInt(maxRange))+1;
-
-
-        System.out.println("Wylosowano liczbę, zgadnij którą, masz 3 próby:" + randomNumber);
-        while(i < 3)
-        {
-            if(randomNumber == Integer.parseInt(reader.next())){
-                System.out.println("Super zgadłeś liczbę");
-                break;
-
+                Random generator = new Random();
+                randomNumber = generator.nextInt(Integer.parseInt(maxRange)) + 1;
+                isGood = true;
             }
-            else{
-                System.out.println("Pudło");
-                i++;
+            catch (NumberFormatException n) {
+                System.out.println("Niepoprawne dane wejściowe");
+            }
+            catch (IllegalArgumentException m) {
+                System.out.println("Podaj liczbę większą od 1");
             }
         }
+
+        System.out.println("Wylosowano liczbę, zgadnij którą, masz 3 próby:" + randomNumber);
+
+        while(i < 3)
+        {
+            try {
+                if (randomNumber == Integer.parseInt(reader.next())) {
+                    System.out.println("Super zgadłeś liczbę");
+                    break;
+
+                } else {
+                    System.out.println("Pudło");
+                    i++;
+                }
+            }
+            catch (NumberFormatException n) {
+                System.out.println("Niepoprawne dane wejściowe");
+            }
+        }
+        System.out.println("Nie udało Ci się odgadnąć liczby. Spróbuj następnym razem.");
     }
 }
