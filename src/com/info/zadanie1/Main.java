@@ -29,7 +29,7 @@ public class Main {
             }
         }
 
-        System.out.println("Wylosowano liczbę, zgadnij którą, masz 3 próby:" + randomNumber);
+        System.out.println("Wylosowano liczbę, zgadnij którą, masz 3 próby:");
 
         while(i < 3)
         {
@@ -47,6 +47,8 @@ public class Main {
                 System.out.println("Niepoprawne dane wejściowe");
             }
         }
-        System.out.println("Nie udało Ci się odgadnąć liczby. Spróbuj następnym razem.");
+        if (i == 3) {
+            System.out.println("Nie udało Ci się odgadnąć liczby. Spróbuj następnym razem.");
+        }
     }
 }
